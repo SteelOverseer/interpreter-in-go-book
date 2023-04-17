@@ -12,8 +12,9 @@ const (
 	EOF     = "EOF"
 
 	// Identifiers + literals
-	IDENT = "IDENT"
-	INT   = "INT"
+	IDENT  = "IDENT"
+	INT    = "INT"
+	STRING = "STRING"
 
 	// Operators
 	ASSIGN   = "="
@@ -23,14 +24,17 @@ const (
 	ASTERISK = "*"
 	SLASH    = "/"
 
-	LT     = "<"
-	GT     = ">"
-	EQ     = "=="
-	NOT_EQ = "!="
+	LT       = "<"
+	GT       = ">"
+	EQ       = "=="
+	NOT_EQ   = "!="
+	LBRACKET = "["
+	RBRACKET = "]"
 
 	// Delimiters
 	COMMA     = ","
 	SEMICOLON = ";"
+	COLON     = ":"
 
 	LPAREN = "("
 	RPAREN = ")"

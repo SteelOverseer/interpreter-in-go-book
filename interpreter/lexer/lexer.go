@@ -1,6 +1,8 @@
 package lexer
 
-import "fish/token"
+import (
+	"fish/token"
+)
 
 type Lexer struct {
 	input        string
@@ -76,6 +78,15 @@ func (l *Lexer) NextToken() token.Token {
 	case 0:
 		tok.Literal = ""
 		tok.Type = token.EOF
+	case '"':
+		tok.Type = token.STRING
+		tok.Literal = l.readString()
+	case '[':
+		tok = newToken(token.LBRACKET, l.ch)
+	case ']':
+		tok = newToken(token.RBRACKET, l.ch)
+	case ':':
+		tok = newToken(token.COLON, l.ch)
 	default:
 		if isLetter(l.ch) {
 			tok.Literal = l.readIdentifier()
@@ -133,4 +144,15 @@ func (l *Lexer) peekChar() byte {
 	} else {
 		return l.input[l.readPosition]
 	}
+}
+
+func (l *Lexer) readString() string {
+	position := l.position + 1
+	for {
+		l.readChar()
+		if l.ch == '"' || l.ch == 0 {
+			break
+		}
+	}
+	return l.input[position:l.position]
 }
